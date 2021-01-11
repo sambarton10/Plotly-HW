@@ -16,6 +16,7 @@ function filterbyTop10(sample) {
   // console.log(slicedOTUids);
   // console.log(slicedOTUlabels);
 
+  //Bar Chart Trace
   var trace1 = {
     x: slicedData,
     y: OTU_id,
@@ -27,7 +28,7 @@ function filterbyTop10(sample) {
   // Create the data array for the plot
   var dataBAR = [trace1];
   
-  // Define the plot layout
+  // Define the bar plot layout
   var layoutBAR = {
     title: "Top 10 OTUs",
     margin: {
@@ -37,7 +38,8 @@ function filterbyTop10(sample) {
       b: 100
     }
   };
-  
+
+  //Bubble Chart Trace
   var trace2 = {
     x: filteredTop10[0].otu_ids,
     y: filteredTop10[0].sample_values,
@@ -51,18 +53,22 @@ function filterbyTop10(sample) {
 
   var dataBUBBLE = [trace2];
 
-    var layoutBUBBLE = {
-      title: 'Top 10 OTUs',
+  //Bubble Chart Layout
+  var layoutBUBBLE = {
+      title: 'All OTUs Found In Individual',
       height: 650,
       width: 1400
     };
 
-  // Plot the chart to a div tag with id "bar-plot"
+  // Plot the chart to a div tag with id "bar" for Bar Chart & "bubble" for Bubble Chart
   Plotly.newPlot("bar", dataBAR, layoutBAR);
   Plotly.newPlot("bubble", dataBUBBLE, layoutBUBBLE);
 
 })};
 
+function getInfo(id) {
+  d3.json("Data/samples.json").then(function(data){
+    console.log(data);
 
 function init() {
   // select dropdown menu 
