@@ -68,8 +68,19 @@ function filterbyTop10(sample) {
 
 function getInfo(id) {
   d3.json("Data/samples.json").then(function(data){
-    console.log(data);
 
+    function getInfoInd(metaData) {
+      return parseInt(metaData.id) == 941;
+      }
+    var metaData = data.metadata.filter(getInfoInd);
+    console.log(metaData)
+
+    var trace3 = {
+      
+    }
+
+  })
+  };
 function init() {
   // select dropdown menu 
   var dropdown = d3.select("#selDataset");
@@ -85,8 +96,7 @@ function init() {
 
       // call the functions to display the data and the plots to the page
     getPlot();
-    //getInfo(data.names[0]);
+    getInfo();
   });
 }
-
 init();
