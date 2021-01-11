@@ -2,6 +2,7 @@ function getPlot(id) {
   d3.json("Data/samples.json").then(function(data){
     console.log(data);
 
+//Plots
 function filterbyTop10(sample) {
   return parseInt(sample.id) == 941;
   }
@@ -11,9 +12,9 @@ function filterbyTop10(sample) {
   slicedOTUids = filteredTop10[0].otu_ids.slice(0, 10).reverse();
   slicedOTUlabels = filteredTop10[0].otu_labels.slice(0, 10);
   var OTU_id = slicedOTUids.map(d => "OTU " + d)
-  console.log(slicedData);
-  console.log(slicedOTUids);
-  console.log(slicedOTUlabels);
+  // console.log(slicedData);
+  // console.log(slicedOTUids);
+  // console.log(slicedOTUlabels);
 
   var trace1 = {
     x: slicedData,
@@ -37,14 +38,30 @@ function filterbyTop10(sample) {
     }
   };
   
+  var trace2 = {
+    x: filteredTop10[0].otu_ids,
+    y: filteredTop10[0].sample_values,
+    mode:'markers',
+    text: slicedOTUlabels,
+    marker: {
+      size: filteredTop10[0].sample_values,
+      color: filteredTop10[0].otu_ids
+    }
+  };
+
+  var dataBUBBLE = [trace2];
+
+    var layoutBUBBLE = {
+      title: 'Top 10 OTUs',
+      height: 650,
+      width: 1400
+    };
+
   // Plot the chart to a div tag with id "bar-plot"
   Plotly.newPlot("bar", dataBAR, layoutBAR);
+  Plotly.newPlot("bubble", dataBUBBLE, layoutBUBBLE);
+
 })};
-getPlot(940);
-// Create the Trace
-
-
-//   )};
 
 
 function init() {
@@ -61,8 +78,8 @@ function init() {
       });
 
       // call the functions to display the data and the plots to the page
-     // getPlot(data.names[0]);
-      getInfo(data.names[0]);
+    getPlot();
+    //getInfo(data.names[0]);
   });
 }
 
