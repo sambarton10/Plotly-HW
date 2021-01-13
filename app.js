@@ -4,7 +4,7 @@ function getPlot(id) {
 
 //Plots
 function filterbyTop10(sample) {
-  return parseInt(sample.id) == 941;
+  return parseInt(sample.id) == id;
   }
   var filteredTop10 = data.samples.filter(filterbyTop10);
   //x values
@@ -70,17 +70,22 @@ function getInfo(id) {
   d3.json("Data/samples.json").then(function(data){
 
     function getInfoInd(metaData) {
-      return parseInt(metaData.id) == 941;
+      return parseInt(metaData.id) === id;
       }
     var metaData = data.metadata.filter(getInfoInd);
-    console.log(metaData)
+    console.log(metaData);
 
-    var trace3 = {
-      
-    }
-
-  })
+    
+  });
+}
+  function optionChanged(id) {
+    console.log(id)
+    getPlot(id)
+    getInfo(id);
   };
+
+//Calling The Code To Run
+
 function init() {
   // select dropdown menu 
   var dropdown = d3.select("#selDataset");
@@ -89,14 +94,15 @@ function init() {
   d3.json("Data/samples.json").then((data)=> {
       console.log(data)
 
-      // get the id data to the dropdwown menu
+      // get the id data to the dropdown menu
       data.names.forEach(function(name) {
-          dropdown.append("option").text(name).property("value");
+          dropdown.append("option").text(name).property("value")
+
       });
 
       // call the functions to display the data and the plots to the page
-    getPlot();
-    getInfo();
+    getPlot(data.names[0]);
+    getInfo(data.names[0]);
   });
 }
 init();
