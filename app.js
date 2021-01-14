@@ -70,19 +70,18 @@ function getInfo(id) {
   d3.json("Data/samples.json").then(function(data){
 
     function getInfoInd(metaData) {
-      return parseInt(metaData.id) === id;
+      return parseInt(metaData.id) == id;
       }
     var metaData = data.metadata.filter(getInfoInd);
     console.log(metaData);
 
-    
+    document.getElementById("sample-metadata").innerHTML = metaData[0].id;
   });
 }
-  function optionChanged(id) {
-    console.log(id)
-    getPlot(id)
-    getInfo(id);
-  };
+function optionChanged(id) {
+  getPlot(id)
+  getInfo(id);
+};
 
 //Calling The Code To Run
 
@@ -100,9 +99,9 @@ function init() {
 
       });
 
-      // call the functions to display the data and the plots to the page
-    getPlot(data.names[0]);
-    getInfo(data.names[0]);
+      // call the functions to display the data and the plots to the page for first individual
+    getPlot(940);
+    getInfo(940);
   });
 }
 init();
