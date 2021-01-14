@@ -73,9 +73,15 @@ function getInfo(id) {
       return parseInt(metaData.id) == id;
       }
     var metaData = data.metadata.filter(getInfoInd);
-    console.log(metaData);
+    console.log(metaData[0].age)
 
-    document.getElementById("sample-metadata").innerHTML = metaData[0].id;
+    // for (const [key, value] of (metaData)) {
+    //   console.log('${key}: ${value}');
+    // }
+   
+
+    // for (var i = 0; i < metaData.length; i++) {
+    //   document.getElementById("sample-metadata").innerHTML = metaData[0]};
   });
 }
 function optionChanged(id) {
