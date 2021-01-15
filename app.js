@@ -73,7 +73,7 @@ function getInfo(id) {
       return parseInt(metaData.id) == id;
       }
     var metaData = data.metadata.filter(getInfoInd);
-    console.log(metaData[0].age)
+    var stringMetaData = JSON.stringify(metaData[0])
 
     // for (const [key, value] of (metaData)) {
     //   console.log('${key}: ${value}');
@@ -81,7 +81,7 @@ function getInfo(id) {
    
 
     // for (var i = 0; i < metaData.length; i++) {
-    //   document.getElementById("sample-metadata").innerHTML = metaData[0]};
+    document.getElementById("sample-metadata").innerHTML = stringMetaData;
   });
 }
 function optionChanged(id) {
