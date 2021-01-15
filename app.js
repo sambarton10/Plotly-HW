@@ -73,17 +73,20 @@ function getInfo(id) {
       return parseInt(metaData.id) == id;
       }
     var metaData = data.metadata.filter(getInfoInd);
-    var stringMetaData = JSON.stringify(metaData[0])
+    var metaDataID = JSON.stringify(metaData[0].id)
+    var metaDataEthnicity = JSON.stringify(metaData[0].ethnicity)
 
-    // for (const [key, value] of (metaData)) {
+    // for (const [key, value] of (metaDataID)) {
     //   console.log('${key}: ${value}');
-    // }
+    //  }
    
 
     // for (var i = 0; i < metaData.length; i++) {
-    document.getElementById("sample-metadata").innerHTML = stringMetaData;
-  });
-}
+      document.getElementById("sample-metadata").innerHTML = "ID: " + metaDataID + "</br>" + "Ethnicity: " + metaDataEthnicity;
+    // document.getElementById("sample-metadata").innerHTML = "ethnicity: " + metaDataEthnicity;
+  // }
+});
+};
 function optionChanged(id) {
   getPlot(id)
   getInfo(id);
