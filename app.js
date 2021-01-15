@@ -62,19 +62,21 @@ var trace3 = [
   { 
   domain: { x: [0, 1], y: [0, 1] },
     value: wFreqID,
-    title: { text: "Speed" },
     type: "indicator",
     mode: "gauge+number",
     gauge: {
-      axis: { range: [null, 9] },
-      steps: [
-        { range: [0, 1], color: "lightgray" },
-        { range: [250, 400], color: "gray" }
-      ],
+      axis: { range: [null, 9], tickwidth: 1, tickcolor: "black" },
     }
   }
 ];
+var dataGAUGE = trace3;
 
+//Gauge Layout
+var layoutGAUGE= {
+  title: "Washing Frequency (per week)",
+  height: 400,
+  width: 475
+};
   //Bubble Chart Layout
   var layoutBUBBLE = {
       title: 'All OTUs Found In Individual',
@@ -84,7 +86,7 @@ var trace3 = [
 
   // Plot the chart to a div tag with id "bar" for Bar Chart & "bubble" for Bubble Chart
   Plotly.newPlot("bar", dataBAR, layoutBAR);
-  Plotly.newPlot("gauge", trace3)
+  Plotly.newPlot("gauge", dataGAUGE, layoutGAUGE)
   Plotly.newPlot("bubble", dataBUBBLE, layoutBUBBLE);
 })};
 
