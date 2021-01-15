@@ -7,11 +7,15 @@ function filterbyTop10(sample) {
   return parseInt(sample.id) == id;
   }
   var filteredTop10 = data.samples.filter(filterbyTop10);
+  var wFreqByID = data.metadata.filter(filterbyTop10);
+  console.log(wFreqByID);
   //x values
   slicedData = filteredTop10[0].sample_values.slice(0, 10).reverse();
   slicedOTUids = filteredTop10[0].otu_ids.slice(0, 10).reverse();
   slicedOTUlabels = filteredTop10[0].otu_labels.slice(0, 10);
   var OTU_id = slicedOTUids.map(d => "OTU " + d)
+  wFreqID = wFreqByID[0].wfreq
+  console.log(wFreqID);
   // console.log(slicedData);
   // console.log(slicedOTUids);
   // console.log(slicedOTUlabels);
@@ -53,17 +57,35 @@ function filterbyTop10(sample) {
 
   var dataBUBBLE = [trace2];
 
+//Gauge Wash Meter Chart
+var trace3 = [
+  { 
+  domain: { x: [0, 1], y: [0, 1] },
+    value: wFreqID,
+    title: { text: "Speed" },
+    type: "indicator",
+    mode: "gauge+number",
+    gauge: {
+      axis: { range: [null, 9] },
+      steps: [
+        { range: [0, 1], color: "lightgray" },
+        { range: [250, 400], color: "gray" }
+      ],
+    }
+  }
+];
+
   //Bubble Chart Layout
   var layoutBUBBLE = {
       title: 'All OTUs Found In Individual',
       height: 650,
-      width: 1400
+      width: 1200
     };
 
   // Plot the chart to a div tag with id "bar" for Bar Chart & "bubble" for Bubble Chart
   Plotly.newPlot("bar", dataBAR, layoutBAR);
+  Plotly.newPlot("gauge", trace3)
   Plotly.newPlot("bubble", dataBUBBLE, layoutBUBBLE);
-
 })};
 
 function getInfo(id) {
@@ -81,12 +103,6 @@ function getInfo(id) {
     var metaDataBBtype = JSON.stringify(metaData[0].bbtype)
     var metaDataWfreq = JSON.stringify(metaData[0].wfreq)
 
-    // for (const [key, value] of (metaDataID)) {
-    //   console.log('${key}: ${value}');
-    //  }
-   
-
-    // for (var i = 0; i < metaData.length; i++) {
       document.getElementById("sample-metadata").innerHTML = "ID: " + metaDataID + 
       "</br>" + "Ethnicity: " + metaDataEthnicity + 
       "</br>" + "Gender: " + metaDataGender +
@@ -94,8 +110,7 @@ function getInfo(id) {
       "</br>" + "Location: " + metaDataLocation +
       "</br>" + "BBType: " + metaDataBBtype +
       "</br>" + "Wfreq: " + metaDataWfreq;
-    // document.getElementById("sample-metadata").innerHTML = "ethnicity: " + metaDataEthnicity;
-  // }
+
 });
 };
 function optionChanged(id) {
