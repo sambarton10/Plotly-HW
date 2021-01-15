@@ -75,6 +75,11 @@ function getInfo(id) {
     var metaData = data.metadata.filter(getInfoInd);
     var metaDataID = JSON.stringify(metaData[0].id)
     var metaDataEthnicity = JSON.stringify(metaData[0].ethnicity)
+    var metaDataGender = JSON.stringify(metaData[0].gender)
+    var metaDataAge = JSON.stringify(metaData[0].age)
+    var metaDataLocation = JSON.stringify(metaData[0].location)
+    var metaDataBBtype = JSON.stringify(metaData[0].bbtype)
+    var metaDataWfreq = JSON.stringify(metaData[0].wfreq)
 
     // for (const [key, value] of (metaDataID)) {
     //   console.log('${key}: ${value}');
@@ -82,7 +87,13 @@ function getInfo(id) {
    
 
     // for (var i = 0; i < metaData.length; i++) {
-      document.getElementById("sample-metadata").innerHTML = "ID: " + metaDataID + "</br>" + "Ethnicity: " + metaDataEthnicity;
+      document.getElementById("sample-metadata").innerHTML = "ID: " + metaDataID + 
+      "</br>" + "Ethnicity: " + metaDataEthnicity + 
+      "</br>" + "Gender: " + metaDataGender +
+      "</br>" + "Age: " + metaDataAge +
+      "</br>" + "Location: " + metaDataLocation +
+      "</br>" + "BBType: " + metaDataBBtype +
+      "</br>" + "Wfreq: " + metaDataWfreq;
     // document.getElementById("sample-metadata").innerHTML = "ethnicity: " + metaDataEthnicity;
   // }
 });
