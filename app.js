@@ -64,16 +64,25 @@ var trace3 = [
     value: wFreqID,
     type: "indicator",
     mode: "gauge+number",
+    color: "white",
     gauge: {
-      axis: { range: [null, 9], tickwidth: 1, tickcolor: "black" },
-    }
+      axis: { range: [null, 9], tickwidth: 0, tickcolor: "black", color: "white" },
+      steps:[
+        { range: [0, 3], color: "red" },
+        { range: [3, 6], color: "orange" },
+        { range: [6, 9], color: "lightgreen" }
+        ],
+      bar: {color: "white"},
+    },
+
   }
 ];
 var dataGAUGE = trace3;
 
 //Gauge Layout
 var layoutGAUGE= {
-  title: "Washing Frequency (per week)",
+
+  title: "Washing Frequency (scrubs per week)",
   height: 400,
   width: 475
 };
